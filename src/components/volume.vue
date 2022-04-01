@@ -1,18 +1,21 @@
 <template>
   <div>
-    <p>
-      The volume of a cube can be found by multiplying the edge length three
-      times. The formula to calculate the volume of a cube is given as, Volume
-      of a cube = a<sup>3</sup>, where 'a' is the length of the side of the
-      cube.
-    </p>
-    <h3>Calculate volume</h3>
-    <form class="form" v-on:submit="calculateVolume">
-      <label for="sideA">Side length a:</label><br />
-      <input type="text" id="sideA" name="sideA" /><br />
-      <button id="submit" type="submit">Calculate</button>
-    </form>
-    <p>Solution: <span id="outputArea"></span></p>
+    <div id="deleteOnChoose">
+      <!-- <p id="back" v-on:click="goToChoose">&lt;- back</p> -->
+      <p class="description">
+        The volume of a cube can be found by multiplying the edge length three
+        times. The formula to calculate the volume of a cube is given as, Volume
+        of a cube = a<sup>3</sup>, where 'a' is the length of the side of the
+        cube.
+      </p>
+      <h3>Calculate volume</h3>
+      <form class="form" v-on:submit="calculateVolume">
+        <label for="sideA">Side length a:</label><br />
+        <input type="text" id="sideA" name="sideA" /><br />
+        <button id="submit" type="submit">Calculate</button>
+      </form>
+      <p>Solution: <span id="outputArea"></span></p>
+    </div>
   </div>
 </template>
 
@@ -22,8 +25,9 @@ export default {
   name: "area",
   methods: {
     calculateVolume(e) {
-      let a = document.getElementById("sideA").value * 6;
-      document.getElementById("outputArea").innerHTML = a;
+      let a = document.getElementById("sideA").value;
+      let solution = a ** 3;
+      document.getElementById("outputArea").innerHTML = solution;
       e.preventDefault();
     },
   },
@@ -32,11 +36,19 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+// #back {
+//   color: #f76236;
+//   margin-bottom: 0;
+//   cursor: pointer;
+// }
+// #back:hover {
+//   color: #d53809;
+// }
 .form {
   color: #eaeaea;
 }
 
-p {
+.description {
   color: #eaeaea;
 }
 

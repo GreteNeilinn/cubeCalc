@@ -1,13 +1,9 @@
 <template>
-  <!-- <div class="hello">
-    <h1>{{ msg }}</h1> 
-  </div> -->
-
   <div class="container-md">
     <div class="row align-items-center">
       <div class="col-sm">
         <h2>CUBE</h2>
-        <Area />
+        <ChooseCalc />
       </div>
       <div class="col-sm" id="cube">
         <canvas class="webgl"></canvas>
@@ -17,20 +13,16 @@
 </template>
 
 <script>
-import Area from "@/components/area.vue";
+import ChooseCalc from "@/components/chooseCalc.vue";
 import "@/assets/cubeJS.js";
 export default {
   name: "geometryPage",
   components: {
-    Area,
+    ChooseCalc,
   },
-  //   props: {
-  //     msg: String,
-  //   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .container {
   display: block;
@@ -92,7 +84,6 @@ input:focus {
     padding-right: 0;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 0;
     display: block;
   }
 }

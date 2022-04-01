@@ -1,18 +1,21 @@
 <template>
-  <div>
-    <p>
-      Surface area of cube is the sum of areas of all the faces of cube, that
-      covers it. The area of one face of the cube = (side<sup>2</sup>).
-      Therefore total Surface Area of a Cube = (6 × side<sup>2</sup>) square
-      units. The formula is written as S = 6a<sup>2</sup>
-    </p>
-    <h3>Calculate area</h3>
-    <form class="form" v-on:submit="calculateArea">
-      <label for="sideA">Side length a:</label><br />
-      <input type="text" id="sideA" name="sideA" /><br />
-      <button id="submit" type="submit">Calculate</button>
-    </form>
-    <p>Solution: <span id="outputArea"></span></p>
+  <div id="area">
+    <div id="deleteSection">
+      <!-- <p id="back" v-on:click="goToChoose">&lt;- back</p> -->
+      <p class="description">
+        Surface area of cube is the sum of areas of all the faces of cube, that
+        covers it. The area of one face of the cube = (side<sup>2</sup>).
+        Therefore total Surface Area of a Cube = (6 × side<sup>2</sup>) square
+        units. The formula is written as S = 6a<sup>2</sup>
+      </p>
+      <h3>Calculate area</h3>
+      <form class="form" v-on:submit="calculateArea">
+        <label for="sideA">Side length a:</label><br />
+        <input type="text" id="sideA" name="sideA" /><br />
+        <button id="submit" type="submit">Calculate</button>
+      </form>
+      <p>Solution: <span id="outputArea"></span></p>
+    </div>
   </div>
 </template>
 
@@ -22,8 +25,9 @@ export default {
   name: "area",
   methods: {
     calculateArea(e) {
-      let a = document.getElementById("sideA").value * 6;
-      document.getElementById("outputArea").innerHTML = a;
+      let a = document.getElementById("sideA").value;
+      let solution = a * a * 6;
+      document.getElementById("outputArea").innerHTML = solution;
       e.preventDefault();
     },
   },
@@ -32,11 +36,19 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+// #back {
+//   color: #f76236;
+//   margin-bottom: 0;
+//   cursor: pointer;
+// }
+// #back:hover {
+//   color: #d53809;
+// }
 .form {
   color: #eaeaea;
 }
 
-p {
+.description {
   color: #eaeaea;
 }
 
