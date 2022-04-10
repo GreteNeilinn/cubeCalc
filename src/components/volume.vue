@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <div id="deleteOnChoose">
-      <!-- <p id="back" v-on:click="goToChoose">&lt;- back</p> -->
-      <p class="description">
-        The volume of a cube can be found by multiplying the edge length three
-        times. The formula to calculate the volume of a cube is given as, Volume
-        of a cube = a<sup>3</sup>, where 'a' is the length of the side of the
-        cube.
-      </p>
+  <div id="volume">
+    <p id="back" v-on:click="goToChoose">&lt;- back</p>
+    <p class="description">
+      The volume of a cube can be found by multiplying the edge length three
+      times. The formula to calculate the volume of a cube is given as, Volume
+      of a cube = a<sup>3</sup>, where 'a' is the length of the side of the
+      cube.
+    </p>
+    <div>
       <h3>Calculate volume</h3>
       <form class="form" v-on:submit="calculateVolume">
         <label for="sideA">Side length a:</label><br />
@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: "area",
+  name: "Volume",
   methods: {
     calculateVolume(e) {
       let a = document.getElementById("sideA").value;
@@ -30,20 +30,23 @@ export default {
       document.getElementById("outputArea").innerHTML = solution;
       e.preventDefault();
     },
+    goToChoose() {
+      this.$emit("clicked", "ChooseCalc");
+    },
   },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-// #back {
-//   color: #f76236;
-//   margin-bottom: 0;
-//   cursor: pointer;
-// }
-// #back:hover {
-//   color: #d53809;
-// }
+#back {
+  color: #f76236;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+#back:hover {
+  color: #d53809;
+}
 .form {
   color: #eaeaea;
 }
@@ -88,5 +91,22 @@ input:focus {
 
 .row {
   height: 100vh;
+}
+
+@media screen and (max-width: 479px) {
+  /* start of phone styles */
+  #volume {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .description {
+    text-align: justify;
+  }
+  input,
+  #submit {
+    width: 70%;
+  }
 }
 </style>

@@ -1,11 +1,11 @@
 <template>
   <div class="container-md">
     <div class="row align-items-center">
-      <div class="col-sm">
-        <h2>CUBE</h2>
-        <ChooseCalc />
+      <div class="col-sm fade-in cube">
+        <h2 class="geo-title">CUBE</h2>
+        <component :is="activeTab" @clicked="onClickChild" />
       </div>
-      <div class="col-sm" id="cube">
+      <div class="col-sm fade-in" id="cube">
         <canvas class="webgl"></canvas>
       </div>
     </div>
@@ -13,12 +13,52 @@
 </template>
 
 <script>
+import { onMounted } from "vue";
 import ChooseCalc from "@/components/chooseCalc.vue";
+import Area from "@/components/area.vue";
+import Volume from "@/components/volume.vue";
 import "@/assets/cubeJS.js";
 export default {
   name: "geometryPage",
   components: {
     ChooseCalc,
+    Area,
+    Volume,
+  },
+  methods: {
+    onClickChild(value) {
+      this.activeTab = value;
+    },
+  },
+  data() {
+    return {
+      activeTab: "ChooseCalc",
+    };
+  },
+  setup() {
+    onMounted(() => {
+      const faders = document.querySelectorAll(".fade-in");
+      const appearOptions = {
+        threshold: 1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+      const appearOnScroll = new IntersectionObserver(function (
+        entries,
+        appearOnScroll
+      ) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("appear");
+            appearOnScroll.unobserve(entry.target);
+          }
+        });
+      },
+      appearOptions);
+
+      faders.forEach((fader) => {
+        appearOnScroll.observe(fader);
+      });
+    });
   },
 };
 </script>
@@ -26,10 +66,16 @@ export default {
 <style scoped lang="scss">
 .container {
   display: block;
+  overflow: hidden;
+}
+
+.cube {
+  padding: 0px 25px 0px;
 }
 
 h2 {
   color: #f76236;
+  font-size: 35px;
 }
 
 .form {
@@ -77,6 +123,20 @@ input:focus {
 .row {
   height: 100vh;
 }
+
+//Related to scroll:
+
+.fade-in {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.4s ease-in;
+}
+
+.fade-in.appear {
+  transform: scale(1);
+  opacity: 1;
+}
+
 @media screen and (max-width: 768px) {
   /* start of phone styles */
   .webgl {
@@ -85,6 +145,15 @@ input:focus {
     margin-left: auto;
     margin-right: auto;
     display: block;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  /* start of phone styles */
+  .cube {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="chooseCalc">
-    <div v-if="showChoicesData">
+    <div class="calc-selection">
       <button
         id="firstBtn"
         class="btn btn-primary btn-lg btn-block"
@@ -16,37 +16,20 @@
         Calculate volume
       </button>
     </div>
-    <Area v-if="showAreaData" />
-    <Volume v-if="showVolumeData" />
   </div>
 </template>
 
 <script>
-import Area from "@/components/area.vue";
-import Volume from "@/components/volume.vue";
 import "@/assets/cubeJS.js";
 export default {
-  name: "geometryPage",
-  components: {
-    Area,
-    Volume,
-  },
+  name: "ChooseCalc",
   methods: {
     toArea() {
-      this.showAreaData = true;
-      this.showChoicesData = false;
+      this.$emit("clicked", "Area");
     },
     toVolume() {
-      this.showVolumeData = true;
-      this.showChoicesData = false;
+      this.$emit("clicked", "Volume");
     },
-  },
-  data: function () {
-    return {
-      showAreaData: false,
-      showVolumeData: false,
-      showChoicesData: true,
-    };
   },
 };
 </script>
@@ -69,5 +52,24 @@ button:focus {
   background-color: #f76236;
   border-color: #f76236;
   box-shadow: none;
+}
+@media screen and (max-width: 392px) {
+  .calc-selection {
+    display: flex;
+    align-items: center;
+  }
+  /* start of phone styles */
+}
+
+@media screen and (min-width: 480px) {
+  #secondBtn {
+    margin-left: 0px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  #secondBtn {
+    margin: 10px;
+  }
 }
 </style>

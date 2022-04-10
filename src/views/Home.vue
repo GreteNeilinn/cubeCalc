@@ -16,9 +16,10 @@
           </svg>
         </div>
       </div>
-      <div>
+      <div class="title-wrapper">
         <h1 id="main" class="main">CUBEC.</h1>
         <h2>Innovational hexahedron calculator</h2>
+        <!--  :D  -->
       </div>
     </div>
     <GeometryPage />
@@ -52,20 +53,24 @@ export default {
   position: relative;
 }
 
-.landing-page h1 {
+.title-wrapper {
+  opacity: 0;
   text-align: center;
   position: relative;
-  font-weight: bolder;
-  font-size: 18vh;
   letter-spacing: 10px;
+  transform: translateY(100%);
+  animation: slideTitleUp 0.6s 0.4s forwards ease;
+}
+
+.landing-page h1 {
+  font-weight: bolder;
+  font-size: 15vh;
   color: #f76236;
 }
 
 .landing-page h2 {
-  text-align: center;
-  position: relative;
   font-weight: bolder;
-  letter-spacing: 10px;
+  font-size: 5vh;
 }
 
 .custom-shape-divider-top-1648241238 {
@@ -87,6 +92,13 @@ export default {
 
 .custom-shape-divider-top-1648241238 .shape-fill {
   fill: #191b1e;
+}
+
+@keyframes slideTitleUp {
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
 }
 
 //info: https://mediag.com/blog/popular-screen-resolutions-designing-for-all/
