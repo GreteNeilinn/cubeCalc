@@ -1,5 +1,10 @@
 # geocalc
 
+## Link to page
+
+https://greteneilinn.github.io/cubeCalc/
+
+
 ## Project setup
 ```
 npm install
