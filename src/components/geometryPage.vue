@@ -6,7 +6,7 @@
         <component :is="activeTab" @clicked="onClickChild" />
       </div>
       <div class="col-sm fade-in" id="cube">
-        <canvas class="webgl"></canvas>
+        <canvas id="webgl" class="webgl"></canvas>
       </div>
     </div>
   </div>
